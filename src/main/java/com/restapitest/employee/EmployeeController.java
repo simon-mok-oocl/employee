@@ -30,4 +30,10 @@ public class EmployeeController {
     {
         return this.emplyeeRepository.getEmployeeByGender(gender);
     }
+
+    @GetMapping(params = {"page" , "pageSize"})
+    public List<Employee> getEmployeeInPage(@RequestParam Integer page , @RequestParam Integer pageSize)
+    {
+        return this.emplyeeRepository.getEmployeeInPage(page , pageSize);
+    }
 }
