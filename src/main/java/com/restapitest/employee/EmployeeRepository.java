@@ -2,6 +2,7 @@ package com.restapitest.employee;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EmployeeRepository {
     List<Employee> employees;
@@ -26,5 +27,11 @@ public class EmployeeRepository {
                 .filter(employee -> employee.getId() == id)
                 .findFirst()
                 .orElseThrow(() -> new NoSuchEmployeeException());
+    }
+
+    public List<Employee> getEmployeeByGender(String gender) {
+        return employees.stream()
+                .filter(employee -> employee.getGender().equals(gender))
+                .collect(Collectors.toList());
     }
 }

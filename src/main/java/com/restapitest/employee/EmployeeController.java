@@ -1,9 +1,6 @@
 package com.restapitest.employee;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +23,11 @@ public class EmployeeController {
     @GetMapping("/{id}")
     public Employee getEmployeeById(@PathVariable Integer id) throws NoSuchEmployeeException {
         return this.emplyeeRepository.getEmployeeById(id);
+    }
+
+    @GetMapping(params = {"gender"})
+    public List<Employee> getEmployeeByGender(@RequestParam String gender)
+    {
+        return this.emplyeeRepository.getEmployeeByGender(gender);
     }
 }
