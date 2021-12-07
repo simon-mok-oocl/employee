@@ -52,4 +52,17 @@ public class EmployeeRepository {
         this.employees.add(newEmployee);
         return newEmployee;
     }
+
+    public Employee editEmployeeAgeAndSalary(Integer id, Integer age, Integer salary) throws NoSuchEmployeeException {
+        Employee patchEmployee = this.employees
+                .stream()
+                .filter(employee -> employee.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new NoSuchEmployeeException());
+
+        patchEmployee.setAge(age);
+        patchEmployee.setSalary(salary);
+
+        return patchEmployee;
+    }
 }

@@ -47,4 +47,12 @@ public class EmployeeController {
         return new ResponseEntity<Employee>(newEmployee, HttpStatus.CREATED);
     }
 
+    @PutMapping
+    public Employee editEmployeeAgeAndSalary(@RequestBody Employee employeePatch) throws NoSuchEmployeeException {
+        Integer id = employeePatch.getId();
+        Integer age = employeePatch.getAge();
+        Integer salary = employeePatch.getSalary();
+        return this.emplyeeRepository.editEmployeeAgeAndSalary(id , age , salary);
+    }
+
 }
