@@ -1,11 +1,14 @@
 package com.restapitest.employee;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("employees")
+@ControllerAdvice
 public class EmployeeController {
     private EmployeeRepository emplyeeRepository;
 
@@ -38,9 +41,10 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public Employee createEmployee(@RequestBody Employee newEmployee)
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee newEmployee)
     {
-        return this.emplyeeRepository.addEmployee(newEmployee);
+        this.emplyeeRepository.addEmployee(newEmployee);
+        return new ResponseEntity<Employee>(newEmployee, HttpStatus.CREATED);
     }
 
 }
