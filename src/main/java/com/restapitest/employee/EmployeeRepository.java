@@ -20,4 +20,11 @@ public class EmployeeRepository {
     {
         return this.employees;
     }
+
+    public Employee getEmployeeById(Integer id) throws NoSuchEmployeeException {
+        return employees.stream()
+                .filter(employee -> employee.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new NoSuchEmployeeException());
+    }
 }
