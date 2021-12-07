@@ -55,4 +55,10 @@ public class EmployeeController {
         return this.emplyeeRepository.editEmployeeAgeAndSalary(id , age , salary);
     }
 
+    @DeleteMapping
+    public String deleteEmployee(@RequestBody Employee ripEmployee) throws NoSuchEmployeeException {
+        this.emplyeeRepository.removeEmployee(ripEmployee);
+        return "";
+    }
+
 }

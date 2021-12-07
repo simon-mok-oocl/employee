@@ -65,4 +65,14 @@ public class EmployeeRepository {
 
         return patchEmployee;
     }
+
+    public void removeEmployee(Employee ripEmployee) throws NoSuchEmployeeException {
+        Employee toBeRemove = this.employees
+                .stream()
+                .filter(employee -> employee.getId() == ripEmployee.getId())
+                .findFirst()
+                .orElseThrow(() -> new NoSuchEmployeeException());
+
+        this.employees.remove(toBeRemove);
+    }
 }
