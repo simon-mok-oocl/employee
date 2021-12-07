@@ -36,4 +36,11 @@ public class EmployeeController {
     {
         return this.emplyeeRepository.getEmployeeInPage(page , pageSize);
     }
+
+    @PostMapping
+    public Employee createEmployee(@RequestBody Employee newEmployee)
+    {
+        return this.emplyeeRepository.addEmployee(newEmployee);
+    }
+
 }

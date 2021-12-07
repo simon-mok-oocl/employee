@@ -41,4 +41,15 @@ public class EmployeeRepository {
                 .limit(pageSize)
                 .collect(Collectors.toList());
     }
+
+    public Employee addEmployee(Employee newEmployee) {
+        Integer nextId = this.employees.stream()
+                .mapToInt(employee -> employee.getId())
+                .max()
+                .orElse(0) + 1;
+
+        newEmployee.setId(nextId);
+        this.employees.add(newEmployee);
+        return newEmployee;
+    }
 }
